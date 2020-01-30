@@ -1,0 +1,46 @@
+﻿
+@{
+    var totalMessage = "";
+    if (IsPost)
+    {
+        var num1 = Request["memes"];
+        var memes = num1.AsInt();
+        var num2 = Request["hoursspent"];
+        var hoursspent = num2.AsInt();
+        var facebook = 0.00;
+        var extramemes = 0.00;
+        var ifunny = 0.00;
+        if (memes >40)
+        {
+            ifunny = 90 * hoursspent;
+            extramemes = (memes - 3) * (67 * hoursspent);
+        }
+        else
+        {
+            ifunny = memes * hoursspent;
+        }
+        facebook = ifunny + extramemes;
+
+        totalMessage = "Facebook Likes = " + facebook;
+
+    }
+}
+
+<html>
+<body style="background-color:blue;">
+    <form action="" method="post">
+        <p>
+            <label for="memes">Memes harvested:</label><br>
+            <input type="text" name="memes" />
+        </p>
+        <p>
+            <label for="hoursspent">Hours spent:</label><br>
+            <input type="text" name="hoursspent" />
+        </p>
+        <p><input type="submit" value="Calculate facebook likes"/></p>
+    </form>
+    <p>@totalMessage</p>
+
+</body>
+</html>
+
